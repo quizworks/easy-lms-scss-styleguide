@@ -1,5 +1,5 @@
-Insyde SCSS Styleguide
-*For writing well structured stylesheets.*  
+#Insyde SCSS Styleguide
+> For writing well structured stylesheets.
 
 Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
 
