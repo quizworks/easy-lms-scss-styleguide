@@ -35,13 +35,13 @@ A “rule declaration” is the name given to a selector (or a group of selector
 * Single line declarations are allowed and don't need blank lines between them.
 ```css
 .listing {
-	font-size: 18px;
-	line-height: 1.2;
+  font-size: 18px;
+  line-height: 1.2;
 }
 
 .item {
-	font-size: 12px;
-	line-height: inherit;
+  font-size: 12px;
+  line-height: inherit;
 }
 
 /* this is allowed */
@@ -60,13 +60,13 @@ Selectors can match HTML elements, as well as an element's class, ID, or any of 
 ```css
 /* bad */
 .my-element-class, .another-element, .dontCamelCase {
-	/* ... */
+  /* ... */
 }
 
 /* good */
 [aria-hidden],
 .hidden-element {
-	/* ... */
+  /* ... */
 }
 ```
 
@@ -77,7 +77,7 @@ Again **DON'T USE ID SELECTORS!** You and only you will be held responsible for 
 Use of body classes should be prevented if at all possible. When using a body class is inevitable, apply it like a modifier e.g.
 ```css
 .page--pagetype {
-	/* ... */
+  /* ... */
 }
 ```
 
@@ -93,22 +93,22 @@ Properties are what give the selected elements of a rule declaration their style
 
 ```css
 /* bad */ {
-  	color : #333;
-  	border-top: 1px solid rgba(0,0,0,0.50);
-  	background : #f1f;
-  	border-radius: 50%;
+  color : #333;
+  border-top: 1px solid rgba(0,0,0,0.50);
+  background : #f1f;
+  border-radius: 50%;
 }
 
 /* good */ {
-	background: #f1f1f1;
-	border-radius: 50%;
-	border-top: 1px solid rgba(0, 0, 0, 0.5);
-	color: #333333;
+  background: #f1f1f1;
+  border-radius: 50%;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  color: #333333;
 }
 ```
 
 ### Formatting
-* Use tabs for indentation.
+* Use 2 spaces for indentation.
 * Use spaces for aligning properties in block lists.
 * Put a space before the opening brace `{` in rule declarations.
 * Put closing braces `}` of rule declarations on a new line.
@@ -123,7 +123,7 @@ Use `0` instead of `none` to specify that a style has no border.
 
 ```css
 .foo {
-	border: none;
+  border: none;
 }
 ```
 
@@ -131,7 +131,7 @@ Use `0` instead of `none` to specify that a style has no border.
 
 ```css
 .foo {
-	border: 0;
+  border: 0;
 }
 ```
 
@@ -182,13 +182,13 @@ Don't write vendor prefixes, these will be auto added to the generated CSS by [A
 
 ```scss
 /* bad */ {
-  	border-radius: 50%;
-  	-moz-border-radius: 50%;
-  	-webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 
 /* good */ {
-	border-radius: 50%;
+  border-radius: 50%;
 }
 ```
 
@@ -196,66 +196,66 @@ Don't write vendor prefixes, these will be auto added to the generated CSS by [A
 
 1. Property declarations
 
-    List all standard property declarations, anything that isn't an `@include` or a nested selector. Sort properties following alphabetically. 
+List all standard property declarations, anything that isn't an `@include` or a nested selector. Sort properties following alphabetically. 
 
-    ```scss
-    .button {
-       background: $green;
-       font-weight: bold;
-       // ...
-    }
-    ```
+```scss
+.button {
+  background: $green;
+  font-weight: bold;
+  // ...
+}
+```
 
 2. `@include` declarations
 
     Grouping `@include`s at the beginning makes it easier to read the entire selector. Overwriting stuff in the include is also easier.
 
-	```scss
-       	.button {
-       	   @include transition(background 0.5s ease);
-       	   background: $green;
-       	   font-weight: bold;
-       	   // ...
-       	}
-    ```
+```scss
+.button {
+  @include transition(background 0.5s ease);
+  background: $green;
+  font-weight: bold;
+  // ...
+}
+```
 
 3. Nested selectors
 
     Nested selectors, _if necessary_, go last, and nothing goes after them. Don't add blank lines between blocks. Apply the same guidelines as above to your nested selectors.
 
-	```scss
-	.button {
-		@include transition(background 0.5s ease);
-		background: $green;
-		font-weight: bold;
-		.icon {
-			margin-right: 10px;
-		}
-	}
-	```
+```scss
+.button {
+  @include transition(background 0.5s ease);
+  background: $green;
+  font-weight: bold;
+  .icon {
+    margin-right: 10px;
+  }
+}
+```
 
 3. BEM selectors
 
-   Nest BEM elements and modifiers. BEM selectors go after any declarations and before nested selectors. Modifiers come first and elements come second. Separate with a blank line. Writing modifier blocks is ok. 
-	```scss
-	.button {
-		@include transition(background 0.5s ease);
-		background: $green;
-		font-weight: bold;
-		&--expanded {
-			width: 100%;
-		}
-		&--small  { width: 25%; }
-    	&--medium { width: 50%; }
-    	&--large  { width: 75%; }
-		&__element {
-			float: right;
-		}
-		.icon {
-			margin-right: 10px;
-		}
-	}
-	```
+Nest BEM elements and modifiers. BEM selectors go after any declarations and before nested selectors. Modifiers come first and elements come second. Separate with a blank line. Writing modifier blocks is ok. 
+```scss
+.button {
+  @include transition(background 0.5s ease);
+  background: $green;
+  font-weight: bold;
+  &--expanded {
+    width: 100%;
+  }
+  &--small  { width: 25%; }
+  &--medium { width: 50%; }
+  &--large  { width: 75%; }
+  &__element {
+    float: right;
+  }
+  .icon {
+    margin-right: 10px;
+  }
+}
+```
 	
 ### Variables
 Global variables should be declared in **_settings.scss**. BEM variables should be declared at the start of the BEM component and their names should resemble that of the component.
@@ -274,10 +274,10 @@ $primary-color: rgba(0, 0, 0, 0.5);
 If and else should be placed on their own lines.
 ```scss
 @if {
-	...
+  ...
 }
 @else {
-	...
+  ...
 }
 ```
 
@@ -296,11 +296,11 @@ Mixins should be used to DRY up your code, add clarity, or abstract complexity--
 
 ```scss
 .page-container {
-	.content {
-		.profile {
-			// STOP!
-		}
-	}
+  .content {
+    .profile {
+    // STOP!
+    }
+  }
 }
 ```
 When selectors become this long, you're likely writing CSS that is:
