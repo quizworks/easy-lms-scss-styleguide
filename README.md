@@ -5,7 +5,7 @@ Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/cs
 
 ## Table of Contents
 
-  1. [CSS](#css)
+  - [CSS](#css)
     - [Rule declaration](#rule-declaration)
     - [Selectors](#selectors)
         - [ID selectors](#id-selectors)
@@ -15,7 +15,7 @@ Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/cs
   	- [Border](#border)
     - [Comments](#comments)
     - [OOCSS and BEM](#oocss-and-bem)
-  1. [SCSS](#scss)
+  - [SCSS](#scss)
 	- [General](#general)
 	- [Vendor prefixes](#vendor-prefixes)
     - [Ordering](#ordering-of-property-declarations)
@@ -24,7 +24,7 @@ Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/cs
     - [Mixins](#mixins)
     - [Extend directive](#extend-directive)
     - [Nested selectors](#nested-selectors)
-  1. [JavaScript hooks](#javascript-hooks)
+  - [JavaScript hooks](#javascript-hooks)
 
 ## CSS
 
