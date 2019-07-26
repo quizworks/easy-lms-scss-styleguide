@@ -249,7 +249,7 @@ List all standard property declarations, anything that isn't an `@include` or a 
 
 3. BEM selectors
 
-Nest BEM elements and modifiers. BEM selectors go after any declarations and before nested selectors. Modifiers come first and elements come second. Separate with a blank line. Writing modifier blocks is ok. 
+Nest BEM elements and modifiers. BEM selectors go after any declarations and before nested selectors. Elements come first and modifiers come second. Separate with a blank line. Writing modifier blocks is ok. 
 ```scss
 .button {
   @include transition(background 0.5s ease);
