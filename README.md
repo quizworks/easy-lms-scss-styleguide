@@ -13,6 +13,7 @@ Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/cs
     - [Properties](#properties)
     - [Formatting](#formatting)
   	- [Border](#border)
+  	- [Z-index](#z-index)
     - [Comments](#comments)
     - [OOCSS and BEM](#oocss-and-bem)
   - [SCSS](#scss)
@@ -135,6 +136,18 @@ Use `0` instead of `none` to specify that a style has no border.
 }
 ```
 
+### Z-index
+
+Don't go overboard with z-indexes like 9999. This is bad for performance and also not well maintanable. 
+
+Instead, check where the breakpoint for your z-index is. You can always use intervals of 10. A general rule of thumb is:
+* 0 - 100: Any specific component layering, e.g. a caption over an image.
+* 100 - 200: Tooltips and other small, local, interactive overlays.
+* 200 - 300: Dropdowns. Common examples include menus and select boxes.
+* 300 - 400: Fixed position elements. Fixed headers and footers are clear examples of fixed page elements, but it could also include a drag-and-drop element in a drag state.
+* 400 - 500: Dialogs and other full-page overlays. Slide panes are another good example of a common UI pattern in this range. It includes any widget that is intended to cover all page content, or that often is used with an underlay.
+* 500 +*: Alerts and special cases. Toast notifications could potentially be in this range, or any component important enough to interrupt all other interaction.
+
 ### Comments
 
 * Prefer line comments (`//`) to block comments.
@@ -163,9 +176,9 @@ To learn more about BEM read: [BEM 101](https://css-tricks.com/bem-101/) and [in
 ```css
 /* block.css */
 .block { }
-.block--modifier { }
 .block__title { }
 .block__content { }
+.block--modifier { }
 ```
 
 ## SCSS
@@ -242,18 +255,35 @@ Nest BEM elements and modifiers. BEM selectors go after any declarations and bef
   @include transition(background 0.5s ease);
   background: $green;
   font-weight: bold;
-  &--expanded {
-    width: 100%;
-  }
-  &--small  { width: 25%; }
-  &--medium { width: 50%; }
-  &--large  { width: 75%; }
   &__element {
     float: right;
   }
   .icon {
     margin-right: 10px;
   }
+  &--expanded {
+    width: 100%;
+  }
+  &--small  { width: 25%; }
+  &--medium { width: 50%; }
+  &--large  { width: 75%; }
+}
+```
+
+We use a set order for the nested blocks as following:
+
+```scss
+.block {
+  // First all the BEM-children
+  &__title {}
+  &__content {}
+  // Then all the non-BEM-children
+  .intro {}
+  p {}
+  // Then all the modifiers, because you can also modify the children within the modifiers more easily
+  &--modifier {}
+  // Then optionally the parents that modify the block
+  .parent & {}
 }
 ```
 	
