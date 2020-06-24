@@ -1,4 +1,4 @@
-# Insyde SCSS Styleguide
+Easy LMS SCSS Styleguide
 > For writing well structured stylesheets.
 
 Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
