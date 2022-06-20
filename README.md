@@ -33,7 +33,7 @@ Loosely based on the [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/cs
 A “rule declaration” is the name given to a selector (or a group of selectors) with an accompanying group of properties.
 
 * Put blank lines between rule declarations.
-* Single line declarations are allowed and don't need blank lines between them.
+* Single line declarations are not allowed
 ```css
 .listing {
   font-size: 18px;
@@ -44,16 +44,12 @@ A “rule declaration” is the name given to a selector (or a group of selector
   font-size: 12px;
   line-height: inherit;
 }
-
-/* this is allowed */
-.icon-chevron-up:before { content: '\e030'; }
-.icon-chevron-down:before { content: '\e031'; }
 ```
 
 ### Selectors
 In a rule declaration, “selectors” are the bits that determine which elements in the DOM tree will be styled by the defined properties.
 Selectors can match HTML elements, as well as an element's class, ID, or any of its attributes. Here are some examples of selectors:
-* Prefer dashes over camelCasing in class names. Underscores are okay when using BEM (see [BEM](#bem) below).
+* Use kebab-case (dashes) for class names, no camelCasing or other naming conventions. Underscores (double) are okay when using BEM (see [BEM](#bem) below).
 * Do not use ID selectors
 * When using multiple selectors in a rule declaration, give each selector its own line.
 * Avoid qualifying elements in selectors e.g. no `ul.list` but just `.list`.
@@ -72,10 +68,10 @@ Selectors can match HTML elements, as well as an element's class, ID, or any of 
 ```
 
 #### ID selectors
-Again **DON'T USE ID SELECTORS!** You and only you will be held responsible for doing it anyway.
+Again **DON'T USE ID SELECTORS!** for styling purposes. You and only you will be held responsible for doing it anyway.
 
 #### Body classes
-Use of body classes should be prevented if at all possible. When using a body class is inevitable, apply it like a modifier e.g.
+Use of body classes should be prevented if at all possible. When using a body class is inevitable, apply it like a modifier (see [BEM](#bem) below) e.g.
 ```css
 .page--pagetype {
   /* ... */
@@ -86,7 +82,7 @@ Use of body classes should be prevented if at all possible. When using a body cl
 Properties are what give the selected elements of a rule declaration their style. Properties are key-value pairs, and a rule declaration can contain one or more property declarations. Property declarations look like this:
 
 * In properties, put a space after, but not before, the `:` character.
-* Never use color names e.g. yellow. These are for children, so use 6 number hex values instead.
+* Never use color names e.g. yellow. These are for kids, so use 6 number hex values instead.
 * Remove trailing zeros for numeric values with a decimal point.
 * Add spaces after commas.
 * Values should be written in lowercase.
@@ -103,7 +99,7 @@ Properties are what give the selected elements of a rule declaration their style
 /* good */ {
   background: #f1f1f1;
   border-radius: 50%;
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, .5);
   color: #333333;
 }
 ```
@@ -150,9 +146,34 @@ Instead, check where the breakpoint for your z-index is. You can always use inte
 
 ### Comments
 
-* Prefer line comments (`//`) to block comments.
+* Use as little comments as possible. Your code should be so clear, it should speak for itself. Don't write comments in abundance.
+* Never comment out styling, just remove it entirely. If you wish to get it back later, you can retrieve it from Version Control.
+* Prefer line comments (`//`) to block comments. Block comments for linters (only if absolutely necessary) or right-to-left exceptions are OK.
 * Put comments on their own line. Avoid end-of-line comments.
-* Write detailed comments for code that isn't self-documenting e.g. compatibility or browser-specific hacks.
+* Write detailed comments for code that isn't self-explanatory e.g. compatibility or overrides for third-party plugins.
+
+**Bad**
+
+```css
+/* Card */
+.card {
+  padding: 1rem;
+  // margin: 1rem;
+}
+```
+
+**Good**
+
+```css
+// Do not use to hide for screenreaders. Use 'show-for-sr' instead!
+.hide {
+  display: none !important;
+}
+
+.knowly {
+  left: 0 #{'/*! rtl:ignore */'};
+}
+```
 
 ### OOCSS and BEM
 
@@ -216,7 +237,7 @@ List all standard property declarations, anything that isn't an `@include` or a 
 .button {
   background: $green;
   font-weight: bold;
-  // ...
+  transition: background .2s ease-in-out;
 }
 ```
 
@@ -265,9 +286,15 @@ Nest BEM elements and modifiers. BEM selectors go after any declarations and bef
   &--expanded {
     width: 100%;
   }
-  &--small  { width: 25%; }
-  &--medium { width: 50%; }
-  &--large  { width: 75%; }
+  &--small  {
+    width: 25%;
+  }
+  &--medium {
+    width: 50%;
+  }
+  &--large  {
+    width: 75%;
+  }
 }
 ```
 
