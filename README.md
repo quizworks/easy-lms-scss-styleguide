@@ -51,7 +51,7 @@ A “rule declaration” is the name given to a selector (or a group of selector
 ```
 
 ### Selectors
-In a rule declaration, “selectors” are the bits that determine which elements in the DOM tree will be styled by the defined properties. 
+In a rule declaration, “selectors” are the bits that determine which elements in the DOM tree will be styled by the defined properties.
 Selectors can match HTML elements, as well as an element's class, ID, or any of its attributes. Here are some examples of selectors:
 * Prefer dashes over camelCasing in class names. Underscores are okay when using BEM (see [BEM](#bem) below).
 * Do not use ID selectors
@@ -109,7 +109,7 @@ Properties are what give the selected elements of a rule declaration their style
 ```
 
 ### Formatting
-* Use 2 spaces for indentation.
+* Use 2 spaces for indentation (and set up your IDE so this is done automatically).
 * Use spaces for aligning properties in block lists.
 * Put a space before the opening brace `{` in rule declarations.
 * Put closing braces `}` of rule declarations on a new line.
@@ -138,7 +138,7 @@ Use `0` instead of `none` to specify that a style has no border.
 
 ### Z-index
 
-Don't go overboard with z-indexes like 9999. This is bad for performance and also not well maintanable. 
+Don't go overboard with z-indexes like 9999. This is bad for performance and also not well maintanable.
 
 Instead, check where the breakpoint for your z-index is. You can always use intervals of 10. A general rule of thumb is:
 * 0 - 100: Any specific component layering, e.g. a caption over an image.
@@ -167,8 +167,8 @@ We encourage some combination of OOCSS and BEM for these reasons:
 To learn more about OOCSS read [OOCSS wiki](https://github.com/stubbornella/oocss/wiki) and [Introduction to OOCSS](http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/).
 
 **BEM**, or “Block-Element-Modifier”, is a _naming convention_ for classes in HTML and CSS. It was originally developed by Yandex with large codebases and scalability in mind, and can serve as a solid set of guidelines for implementing OOCSS.
-To learn more about BEM read: [BEM 101](https://css-tricks.com/bem-101/) and [introduction to BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/).  
-  
+To learn more about BEM read: [BEM 101](https://css-tricks.com/bem-101/) and [introduction to BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/).
+
 * Apply BEM to clearly distinguishable components (objects) e.g. don't do an entire pagefooter in one BEM instance. You can make separate components of linklists etc.
 * Make the the components as small as possible, so it is easy the re-use those blocks in the future.
 * Use only one level of BEM depth (no .block__element__element--modifier).
@@ -187,7 +187,8 @@ To learn more about BEM read: [BEM 101](https://css-tricks.com/bem-101/) and [in
 
 * Use the `.scss` syntax, never the original `.sass` syntax
 * Put blank lines between rule declarations, mixins and functions.
-* Each Components (BEM or otherwise) gets its own file in /components, preceding the file name with an underscore: _component-name.scss
+* Each Components gets its own file in /components, preceding the file name with an underscore: _component-name.scss.
+* Each Component SCSS file should have a max of 100 lines, if it's longer it should be split up into separate components.
 
 ### Vendor prefixes
 
@@ -209,7 +210,7 @@ Don't write vendor prefixes, these will be auto added to the generated CSS by [A
 
 1. Property declarations
 
-List all standard property declarations, anything that isn't an `@include` or a nested selector. Sort properties following alphabetically. 
+List all standard property declarations, anything that isn't an `@include` or a nested selector. Sort properties following alphabetically.
 
 ```scss
 .button {
@@ -225,7 +226,7 @@ List all standard property declarations, anything that isn't an `@include` or a 
 
 ```scss
 .button {
-  @include transition(background 0.5s ease);
+  @include transition(background .5s ease);
   background: $green;
   font-weight: bold;
   // ...
@@ -238,7 +239,7 @@ List all standard property declarations, anything that isn't an `@include` or a 
 
 ```scss
 .button {
-  @include transition(background 0.5s ease);
+  @include transition(background .5s ease);
   background: $green;
   font-weight: bold;
   .icon {
@@ -249,10 +250,10 @@ List all standard property declarations, anything that isn't an `@include` or a 
 
 3. BEM selectors
 
-Nest BEM elements and modifiers. BEM selectors go after any declarations and before nested selectors. Elements come first and modifiers come second. Separate with a blank line. Writing modifier blocks is ok. 
+Nest BEM elements and modifiers. BEM selectors go after any declarations and before nested selectors. Elements come first and modifiers come second. Separate with a blank line. Writing modifier blocks is ok.
 ```scss
 .button {
-  @include transition(background 0.5s ease);
+  @include transition(background .5s ease);
   background: $green;
   font-weight: bold;
   &__element {
@@ -286,7 +287,7 @@ We use a set order for the nested blocks as following:
   .parent & {}
 }
 ```
-	
+
 ### Variables
 Global variables should be declared in **_settings.scss**. BEM variables should be declared at the start of the BEM component and their names should resemble that of the component.
 * Don't use hex values directly in rule declarations. Instead use variables like `$primary-color` where possible.
@@ -294,10 +295,10 @@ Global variables should be declared in **_settings.scss**. BEM variables should 
 
 ```scss
 /* bad */
-$primaryColor: rgba(0,0,0,0.5);
+$primaryColor: rgba(0,0,0,.5);
 
 /* good */
-$primary-color: rgba(0, 0, 0, 0.5);
+$primary-color: rgba(0, 0, 0, .5);
 ```
 
 ### If/else
@@ -319,7 +320,7 @@ Mixins should be used to DRY up your code, add clarity, or abstract complexity--
 
 ### Extend directive
 
-`@extend` should be avoided because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
+`@extend` should be avoided because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins. Furthermore, this is usually a sign that your component is too big and needs to be split up into separate components.
 
 ### Nested selectors
 **Do not nest selectors more than three levels deep!**
@@ -338,18 +339,19 @@ When selectors become this long, you're likely writing CSS that is:
 * Strongly coupled to the HTML (fragile) *—OR—*
 * Overly specific (powerful) *—OR—*
 * Not reusable
+* Not component-based
 
 Again: **never nest ID selectors!**
 
 If you must use an ID selector in the first place (and you should really try not to), they should never be nested. If you find yourself doing this, you need to revisit your markup, or figure out why such strong specificity is needed. If you are writing well formed HTML and CSS, you should **never** need to do this.
 
-
 ## JavaScript hooks
 
-Avoid binding to the same class in both your CSS and JavaScript. Conflating the two often leads to, at a minimum, time wasted during refactoring when a developer must cross-reference each class they are changing, and at its worst, developers being afraid to make changes for fear of breaking functionality.
+Avoid binding to CSS classes with JavaScript. By mixing these two, design and functionality are mixed, which causes dependencies on both sides. You should be able to freely change the CSS classes without having to worry to break the Javascript, and vice versa. Keep them separated!
 
-Create JavaScript-specific classes to bind to, prefixed with `.js-` or use data-attributes when available:
+Create data-attributes to bind to and add CSS classes for changing the appearance of an element based on the interaction. If you change the way something looks, use a CSS class. If you are changing the behavior, use a data-attribute:
 
 ```html
-<button class="button button--cta large js-request-to-book">Request to Book</button>
+<button data-open="bookingModal" class="button button--cta">Request to Book</button>
+<div id="bookingModal" data-modal class="modal modal--open" data-modal>...</div>
 ```
