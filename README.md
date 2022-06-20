@@ -342,7 +342,7 @@ If and else should be placed on their own lines.
 ### Mixins
 
 Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
-* Mixin names should be written in hyphenated lowercase.
+* Mixin names should be written in hyphenated lowercase (kebab-case).
 * Global mixins should be placed in _mixins.scss. Component-only usage mixins should be in their respective component files.
 
 ### Extend directive
